@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-top: 5rem;
+}
+
+p{
+    margin-bottom: .2rem;
+}
+
+.container {
+    max-width: 1140px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.hide {
+    display: none;
+}
+
+.form-autocomplete{
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+}
+
+input[type=text] {
+    width: 100%;
+    margin-bottom: 0;
+}
+.repos-auto-block{
+    position: absolute;
+    top: 38px;
+    left: 0;
+    /*min-height: 175px;*/
+    width: 100%;
+    background-color: #fff;
+
+    text-align: left;
+    border-left: 1px solid #bbbbbb;
+    border-right: 1px solid #bbbbbb;
+    z-index: 1;
+}
+.repo-auto{
+    padding: 5px 10px;
+    border-bottom: 1px solid #bbbbbb;
+    cursor: pointer;
+}
+.repo-auto:hover{
+    background-color: #eee;
+}
+.repo-auto:active{
+    background-color: #eaeaea;
+}
+
+.repos {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 500px;
+
+}
+
+.repo{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 5px 10px;
+    background-color: #eee;
+    align-items: center;
+}
+.repo:hover{
+    background-color: #eaeaea;
+}
+.repo .info{
+    text-align: left;
+    flex-grow: 1;
+}
+.delete{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.delete:before, .delete:after {
+    position: absolute;
+    left: 23px;
+    top: 11px;
+    content: ' ';
+    height: 27px;
+    width: 2px;
+    background-color: #fff;
+}
+.delete:before {
+    transform: rotate(45deg);
+}
+.delete:after {
+    transform: rotate(-45deg);
+}
