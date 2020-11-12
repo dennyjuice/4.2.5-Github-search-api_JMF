@@ -42,6 +42,8 @@
         repos.push({ id, name, owner, stars });
       }
 
+      if (!repos.length) repos.push({ name: "Not found!" });
+
       return repos;
     } catch (e) {
       console.log(e);
@@ -114,9 +116,11 @@
   autoBlock.addEventListener("click", function (e) {
     const target = e.target;
     const repoId = target.dataset.repoId;
-    addRepoCard(repoId);
-    autoComplete(false);
-    input.value = "";
+    if (repoId !== "undefined") {
+      addRepoCard(repoId);
+      autoComplete(false);
+      input.value = "";
+    }
   });
 
   repoCards.addEventListener("click", function (e) {
