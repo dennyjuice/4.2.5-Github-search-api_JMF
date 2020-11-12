@@ -2,12 +2,24 @@
     box-sizing: border-box;
 }
 
-h1 {
-    margin-top: 5rem;
+body{
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-p{
-    margin-bottom: .2rem;
+h1 {
+    margin-top: 5rem;
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+input{
+    outline: none;
+}
+
+input:focus{
+    box-shadow: 0 0 5px 0 #D1D1D1;
 }
 
 .container {
@@ -29,7 +41,14 @@ p{
 
 input[type=text] {
     width: 100%;
+    height: 38px;
     margin-bottom: 0;
+    padding: 5px 10px;
+    border: 1px solid #bbbbbb;
+    border-radius: 3px;
+}
+input[type=text]:hover{
+    border-color: #D1D1D1;
 }
 .repos-auto-block{
     position: absolute;
@@ -67,7 +86,7 @@ input[type=text] {
 .repo{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding: 5px 10px;
     background-color: #eee;
     align-items: center;
@@ -83,18 +102,31 @@ input[type=text] {
     position: relative;
     padding: 0;
     margin: 0;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     font-size: 2rem;
     margin-right: 10px;
+    background-color: #ff4141;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.delete:hover {
+    background-color: #ff2b2b;
+}
+
+.delete:active {
+    background-color: #ff1b1b;
 }
 
 .delete:before, .delete:after {
     position: absolute;
-    left: 23px;
-    top: 11px;
+    left: 19px;
+    top: 10px;
     content: ' ';
-    height: 27px;
+    height: 20px;
     width: 2px;
     background-color: #fff;
 }
