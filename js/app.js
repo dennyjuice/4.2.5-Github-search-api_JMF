@@ -3,7 +3,7 @@
   const input = document.querySelector("#autocomplete");
   const autoBlock = document.querySelector("#repos-auto-block");
   const repoCards = document.querySelector("#repos");
-  let repos = [];
+  let repos = []; //список автокомплита
 
   // Functions
   const debounce = (fn, debounceTime) => {
@@ -26,12 +26,11 @@
       if (response.ok) {
         result = await response.json();
       } else {
-        throw new Error("Ошибка HTTP: " + response.status);
+        console.error("Ошибка HTTP: " + response.status);
       }
 
       for (let i = 0; i < 5; i++) {
         if (!result.items[i]) {
-          repos.push({ name: "Not found" });
           break;
         }
         const {
@@ -81,7 +80,7 @@
     repoCards.insertAdjacentHTML(
       "afterbegin",
       `
-      <div class="repo">
+      <div class="repo" data-repo-id="${repoId}">
             <div class="info">
                 <p>Name: ${repo.name}</p>
                 <p>Owner: ${repo.owner}</p>
@@ -91,6 +90,9 @@
       </div>
     `
     );
+
+    if (!localStorage.getItem(repoId))
+      localStorage.setItem(repoId, JSON.stringify(repo));
   };
 
   // Listeners
@@ -113,12 +115,15 @@
     const target = e.target;
     const repoId = target.dataset.repoId;
     addRepoCard(repoId);
+    autoComplete(false);
+    input.value = "";
   });
 
   repoCards.addEventListener("click", function (e) {
     const target = e.target;
 
     if (target.tagName === "BUTTON") {
+      localStorage.removeItem(target.parentElement.dataset.repoId);
       target.parentElement.remove();
     }
   });
@@ -132,10 +137,20 @@
 
   input.addEventListener("click", function (e) {
     let inputText = this.value;
-    console.log(repos);
+
     if (inputText.length > 1) {
       autoComplete(true, repos);
     }
     e.stopPropagation();
+  });
+
+  window.addEventListener("load", function () {
+    if (localStorage.length) {
+      let keys = Object.keys(localStorage);
+      for (let key of keys) {
+        repos.push(JSON.parse(localStorage.getItem(key)));
+        addRepoCard(key);
+      }
+    }
   });
 })();
